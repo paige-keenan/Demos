@@ -1,46 +1,47 @@
 var scene, camera, renderer;
 
 var WIDTH  = window.innerWidth;
-var HEIGHT = window.innerHeight; 
+var HEIGHT = 400; 
 var SPEED = 0.009;
 
 var colors = [
     {
-      "color" : 0xd53a32,
+      "color" : 0x000000,
     },
     {
-      "color" : 0xdfdfc4,
+      "color" : 0x000000,
     },
     {
-      "color" : 0x1d9099,
+      "color" : 0x000066,
     },
     {
-      "color" : 0xe59d12,
+      "color" : 0x000066,
     },
     {
-      "color" : 0xd53a32,
+      "color" : 0x3333FF,
     },
     {
-      "color" : 0xdfdfc4,
+      "color" : 0x3333FF,
     },
     {
-      "color" : 0x1d9099,
+      "color" : 0x3399FF,
     },
     {
-      "color" : 0xe59d12,
+      "color" : 0x3399FF,
+    }, 
+    {
+      "color" : 0x33FFFF,
     },
     {
-      "color" : 0xd53a32,
+      "color" : 0x33FFFF,
     },
     {
-      "color" : 0xdfdfc4,
+      "color" : 0xCCFFFF,
     },
     {
-      "color" : 0x1d9099,
-    },
-    {
-      "color" : 0xe59d12,
-    }        
+      "color" : 0xCCFFFF,
+    }              
+
 ];
 
 function init() {
@@ -57,13 +58,13 @@ function absolutelyCenter() {
     // When user resizes window, Adjust viewport accordingly.
     $(window).resize(function() {
         WIDTH  = window.innerWidth;
-        HEIGHT = window.innerHeight;  
+        HEIGHT = 400;  
         $('canvas').css({'width': WIDTH, 'height': HEIGHT}); 
     });
 };
 
 function initCamera() { 
-    camera = new THREE.PerspectiveCamera(90, WIDTH / HEIGHT, 1, 10);
+    camera = new THREE.PerspectiveCamera(15, WIDTH / HEIGHT, 1, 10);
     camera.position.set(0, 3.5, 5);
     camera.lookAt(scene.position);
 
@@ -79,15 +80,15 @@ function initRenderer() {
 
 function initCube() {
     var geometry = new THREE.CubeGeometry(3, 5, 5);  
-    var material = new THREE.MeshLambertMaterial({ wireframe: false}); 
+    var material = new THREE.MeshLambertMaterial({ wireframe: false, vertexColors: THREE.FaceColors}); 
     cube = new THREE.Mesh(geometry, material);
     scene.add(cube); 
     
-    for (i=0; i < geometry.faces.length; i++) {
-        // console.log(geometry.faces[i]);
-        // console.log(colors[i].color);
+    // Grab colors from Color object and set face of cube.
+    for (i=0; i < geometry.faces.length; i+=2) {
         var color = new THREE.Color(colors[ i ].color);
         geometry.faces[ i ].color = color;
+        geometry.faces[ i + 1].color = color;
     };
 };
 
@@ -106,9 +107,3 @@ function render() {
 absolutelyCenter();
 init();
 render();
-
-
-
-
-
-
