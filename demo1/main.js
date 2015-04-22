@@ -74,13 +74,13 @@ function initCamera() {
 };
 
 function initRenderer() {
-    renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer = new THREE.CanvasRenderer();
     renderer.setSize(WIDTH, HEIGHT);
 };
 
 function initCube() {
     var geometry = new THREE.CubeGeometry(3, 5, 5);  
-    var material = new THREE.MeshLambertMaterial({ wireframe: false, vertexColors: THREE.FaceColors}); 
+    var material = new THREE.MeshBasicMaterial({ color: 0xe0e0e0, vertexColors: THREE.FaceColors}); 
     cube = new THREE.Mesh(geometry, material);
     scene.add(cube); 
     
