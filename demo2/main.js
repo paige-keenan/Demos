@@ -3,9 +3,6 @@
 	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 	var renderer = new THREE.WebGLRenderer();
 
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild(renderer.domElement);
-
 	function init() {
 		create_geometry();
 		render();
@@ -24,8 +21,10 @@
 	}
 
 	function render() {
-		requestAnimationFrame( render );
-		renderer.render( scene, camera );
+		requestAnimationFrame(render);
+		renderer.render(scene, camera);
+		renderer.setSize( window.innerWidth, window.innerHeight );
+		document.body.appendChild(renderer.domElement);
 	}
 
 	// Materials (design) of shape
