@@ -1,44 +1,30 @@
 (function() {
-	var scene = new THREE.Scene();
-	var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-	var renderer = new THREE.WebGLRenderer();
 
-	function init() {
-		create_geometry();
-		render();
-	}
+  var renderer = PIXI.autoDetectRenderer(window.innerWidth-4, window.innerHeight-4, {transparent: true});
+  var stage = new PIXI.Container();
+  var texture = PIXI.Texture.fromImage('ice-cream.svg');
+  
+  document.body.appendChild(renderer.view);
 
-	// Create a hollow cyclinder shape
-	function create_geometry() {
-		var geometry = new THREE.TorusGeometry(50, 15, 10, 50, Math.PI * 2);
-		var material = create_material(geometry);
-		var torus = new THREE.Mesh(geometry, material);
-		scene.add(torus);
-		camera.position.x = -50;
-        camera.position.y = 50;
-        camera.position.z = 100;
-        camera.lookAt(new THREE.Vector3(0, 0, 0));
-	}
+  function create_particles() {
+    var star = new PIXI.Sprite(texture);
+    star.width = 10 + Math.random()*30;
+    star.height = 10 + Math.random()*30;
+    star.anchor.x = 0.5;
+    star.anchor.y = 0.5;
+        
+    stage.addChild(star);
+    
+  }
 
-	function render() {
-		requestAnimationFrame(render);
-		renderer.render(scene, camera);
-		renderer.setSize( window.innerWidth, window.innerHeight );
-		document.body.appendChild(renderer.domElement);
-	}
+  function init() {
+    // Place 100 images into the scene
+    for (var i = 0; i < 100; i++) {
+      create_particles();
+    }
+  }
 
-	// Materials (design) of shape
-	function create_material(geometry) {
-		var color = 0xe0e0e0;
-		var meshMaterial = new THREE.MeshBasicMaterial({color: color, wireframe: true});
-		return meshMaterial;
-	}
+  init();
 
-	init();
 
 })();
-
-
-
-
-		
