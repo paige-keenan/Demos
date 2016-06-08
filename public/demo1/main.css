@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Biko';
+  src: url("Biko_Black.otf"); }
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+section {
+  background: rgba(107, 98, 65, 0.6);
+  height: 400px;
+  position: relative;
+  width: 100%; }
+
+h1 {
+  color: rgba(33, 244, 240, 0.24);
+  font-family: 'Biko', sans-serif;
+  font-size: 100px;
+  line-height: 80px;
+  position: absolute;
+  right: 30px;
+  text-align: right;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translate(0px, -50%);
+  -moz-transform: translate(0px, -50%);
+  -webkit-transform: translate(0px, -50%);
+  width: 600px; }
+
+canvas {
+  opacity: .2;
+  position: absolute;
+  top: 0; }
+
+/*# sourceMappingURL=main.css.map */
